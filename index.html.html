@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Khissman Art | Creative Design Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --white: #ffffff;
+    --gold: #c9a84c;
+    --gold-light: #e8d08a;
+    --gold-dark: #a07828;
+    --black: #0a0a0a;
+    --black-soft: #141414;
+    --sky: #87ceeb;
+    --sky-dark: #4fa8d0;
+    --sky-light: #d0eef8;
+    --grey: #888;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Raleway', sans-serif;
+    background: var(--black);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(201,168,76,0.25);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 6%;
+  }
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-weight: 900;
+    color: var(--gold);
+    letter-spacing: 2px;
+    text-decoration: none;
+  }
+  .logo span { color: var(--sky); }
+  nav ul { list-style: none; display: flex; gap: 32px; }
+  nav ul a {
+    text-decoration: none; color: var(--white);
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 1.5px;
+    text-transform: uppercase; transition: color 0.3s;
+  }
+  nav ul a:hover { color: var(--gold); }
+  .nav-cta {
+    background: var(--gold); color: var(--black) !important;
+    padding: 9px 22px; border-radius: 2px; font-weight: 600 !important;
+  }
+  .nav-cta:hover { background: var(--gold-light); color: var(--black) !important; }
+
+  /* ── HERO ── */
+  #home {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    position: relative; overflow: hidden;
+    padding: 120px 6% 60px;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 60% at 70% 50%, rgba(201,168,76,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(135,206,235,0.10) 0%, transparent 60%),
+      var(--black);
+  }
+  .hero-grid {
+    position: absolute; inset: 0; opacity: 0.04;
+    background-image: linear-gradient(var(--gold) 1px, transparent 1px),
+                      linear-gradient(90deg, var(--gold) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 620px; }
+  .hero-tag {
+    display: inline-block;
+    background: rgba(201,168,76,0.15);
+    border: 1px solid var(--gold);
+    color: var(--gold); font-size: 0.75rem;
+    letter-spacing: 3px; text-transform: uppercase;
+    padding: 6px 18px; border-radius: 2px; margin-bottom: 28px;
+    animation: fadeUp 0.8s ease both;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    line-height: 1.05; font-weight: 900;
+    animation: fadeUp 0.8s 0.15s ease both;
+  }
+  .hero-title em { font-style: italic; color: var(--gold); }
+  .hero-sub {
+    margin-top: 22px; font-size: 1rem; color: rgba(255,255,255,0.65);
+    line-height: 1.8; font-weight: 300;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+  .hero-btns {
+    margin-top: 38px; display: flex; gap: 16px; flex-wrap: wrap;
+    animation: fadeUp 0.8s 0.45s ease both;
+  }
+  .btn-gold {
+    background: var(--gold); color: var(--black);
+    padding: 14px 32px; font-weight: 700; font-size: 0.85rem;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    border: none; cursor: pointer; border-radius: 2px;
+    text-decoration: none; transition: background 0.3s, transform 0.2s;
+    display: inline-block;
+  }
+  .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent; color: var(--white);
+    padding: 14px 32px; font-weight: 600; font-size: 0.85rem;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    border: 1px solid rgba(255,255,255,0.3); cursor: pointer; border-radius: 2px;
+    text-decoration: none; transition: border-color 0.3s, color 0.3s, transform 0.2s;
+    display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+  .hero-deco {
+    position: absolute; right: 6%; top: 50%; transform: translateY(-50%);
+    width: 360px; height: 420px;
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 4px; overflow: hidden;
+    animation: fadeIn 1.2s 0.5s ease both;
+  }
+  .hero-deco::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(201,168,76,0.2) 0%, rgba(135,206,235,0.15) 100%);
+  }
+  .hero-deco-inner {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 12px;
+  }
+  .art-icon { font-size: 5rem; opacity: 0.6; }
+  .hero-deco-text {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold); font-size: 1.1rem; opacity: 0.7; letter-spacing: 2px;
+  }
+  /* floating frames */
+  .float-frame {
+    position: absolute;
+    border: 2px solid rgba(201,168,76,0.4);
+    border-radius: 2px;
+    animation: float 6s ease-in-out infinite;
+  }
+  .ff1 { width:60px;height:80px; top:18%; right:4%; animation-delay:0s; }
+  .ff2 { width:40px;height:55px; top:65%; right:12%; animation-delay:2s; }
+  .ff3 { width:80px;height:60px; top:30%; right:18%; animation-delay:4s; }
+
+  @keyframes float {
+    0%,100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-12px) rotate(2deg); }
+  }
+
+  /* ── SECTION BASE ── */
+  section { padding: 90px 6%; }
+  .sec-label {
+    font-size: 0.72rem; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 12px; display: block;
+  }
+  .sec-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem); font-weight: 900;
+    line-height: 1.15; margin-bottom: 18px;
+  }
+  .sec-title span { color: var(--gold); }
+  .sec-desc { color: rgba(255,255,255,0.55); font-size: 0.95rem; line-height: 1.85; max-width: 560px; }
+  .divider {
+    width: 50px; height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--sky));
+    margin: 20px 0 40px;
+  }
+
+  /* ── SERVICES ── */
+  #services { background: var(--black-soft); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 24px; margin-top: 10px;
+  }
+  .service-card {
+    background: var(--black);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 4px; padding: 36px 28px;
+    transition: border-color 0.3s, transform 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .service-card::before {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 100%; height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--sky));
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .service-card:hover { border-color: rgba(201,168,76,0.4); transform: translateY(-6px); }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-icon { font-size: 2.2rem; margin-bottom: 18px; }
+  .service-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; font-weight: 700; margin-bottom: 10px;
+    color: var(--white);
+  }
+  .service-desc { font-size: 0.88rem; color: rgba(255,255,255,0.5); line-height: 1.75; }
+  .service-sample {
+    margin-top: 18px;
+    background: rgba(201,168,76,0.06);
+    border: 1px dashed rgba(201,168,76,0.25);
+    border-radius: 2px;
+    height: 140px;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 6px;
+    color: rgba(255,255,255,0.25); font-size: 0.8rem;
+    letter-spacing: 1px;
+  }
+  .sample-icon { font-size: 2rem; opacity: 0.3; }
+  .price-tag {
+    display: inline-block; margin-top: 16px;
+    background: rgba(201,168,76,0.12);
+    border: 1px solid rgba(201,168,76,0.4);
+    color: var(--gold); font-size: 0.78rem;
+    font-weight: 600; letter-spacing: 1px;
+    padding: 5px 14px; border-radius: 20px;
+  }
+
+  /* ── PRICING ── */
+  #pricing { background: var(--black); }
+  .pricing-tabs {
+    display: flex; gap: 12px; margin-bottom: 40px; flex-wrap: wrap;
+  }
+  .tab-btn {
+    background: transparent; border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.5); padding: 10px 24px;
+    font-family: 'Raleway', sans-serif; font-size: 0.82rem;
+    font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+    cursor: pointer; border-radius: 2px; transition: all 0.3s;
+  }
+  .tab-btn.active {
+    background: var(--gold); border-color: var(--gold);
+    color: var(--black);
+  }
+  .tab-btn:hover:not(.active) { border-color: var(--gold); color: var(--gold); }
+
+  .pricing-panel { display: none; }
+  .pricing-panel.active { display: block; }
+
+  .price-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+  .price-card {
+    background: var(--black-soft);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 4px; padding: 28px 22px;
+    text-align: center;
+    transition: all 0.3s; position: relative; overflow: hidden;
+  }
+  .price-card:hover { border-color: rgba(201,168,76,0.5); transform: translateY(-4px); }
+  .price-card.featured {
+    border-color: var(--gold);
+    background: linear-gradient(135deg, rgba(201,168,76,0.1), rgba(135,206,235,0.05));
+  }
+  .price-card.featured .badge {
+    position: absolute; top: 0; right: 0;
+    background: var(--gold); color: var(--black);
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 1px;
+    padding: 4px 10px; text-transform: uppercase;
+  }
+  .price-size {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem; font-weight: 700;
+    margin-bottom: 8px; color: var(--sky);
+  }
+  .price-label { font-size: 0.75rem; color: rgba(255,255,255,0.4); margin-bottom: 14px; }
+  .price-amount {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.9rem; font-weight: 900; color: var(--gold);
+  }
+  .price-amount sup { font-size: 1rem; }
+  .price-note { font-size: 0.75rem; color: rgba(255,255,255,0.35); margin-top: 8px; }
+
+  /* other pricing list */
+  .other-pricing { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
+  .op-card {
+    background: var(--black-soft); border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 4px; padding: 24px 20px;
+    display: flex; flex-direction: column; gap: 8px;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .op-card:hover { border-color: rgba(135,206,235,0.4); transform: translateY(-4px); }
+  .op-icon { font-size: 1.6rem; }
+  .op-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; font-weight: 700;
+  }
+  .op-price { color: var(--gold); font-weight: 700; font-size: 0.95rem; }
+  .op-note { color: rgba(255,255,255,0.4); font-size: 0.8rem; }
+
+  /* ── GALLERY / WORK ── */
+  #gallery { background: var(--black-soft); }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px; margin-top: 8px;
+  }
+  .gallery-item {
+    position: relative; border-radius: 3px; overflow: hidden;
+    aspect-ratio: 3/4;
+    background: linear-gradient(135deg, rgba(201,168,76,0.1), rgba(135,206,235,0.08), rgba(20,20,20,0.9));
+    border: 1px solid rgba(255,255,255,0.06);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 10px;
+    cursor: pointer; transition: transform 0.3s;
+  }
+  .gallery-item:hover { transform: scale(1.02); }
+  .gallery-item:hover .gallery-overlay { opacity: 1; }
+  .gallery-thumb { font-size: 3rem; opacity: 0.4; }
+  .gallery-item-label { font-size: 0.8rem; color: rgba(255,255,255,0.3); letter-spacing: 1px; }
+  .gallery-overlay {
+    position: absolute; inset: 0;
+    background: rgba(201,168,76,0.15);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .gallery-overlay span { color: var(--gold); font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; }
+
+  /* ── ABOUT ── */
+  #about {
+    background: var(--black);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+  }
+  .about-visual {
+    position: relative;
+    height: 440px;
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 4px; overflow: hidden;
+    background: linear-gradient(135deg, rgba(201,168,76,0.08), rgba(135,206,235,0.06));
+    display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 14px;
+  }
+  .about-icon { font-size: 5rem; opacity: 0.5; }
+  .about-quote {
+    font-family: 'Playfair Display', serif; font-style: italic;
+    color: var(--gold); font-size: 1rem; text-align: center; padding: 0 30px; opacity: 0.7;
+  }
+  .about-corner {
+    position: absolute; bottom: 0; right: 0;
+    width: 100px; height: 100px;
+    border-top: 1px solid rgba(135,206,235,0.4);
+    border-left: 1px solid rgba(135,206,235,0.4);
+  }
+  .stats-row { display: flex; gap: 32px; margin-top: 36px; }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 900; color: var(--gold);
+  }
+  .stat-label { font-size: 0.75rem; color: rgba(255,255,255,0.4); letter-spacing: 1px; text-transform: uppercase; }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--black-soft); }
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: start;
+  }
+  .contact-info { display: flex; flex-direction: column; gap: 24px; }
+  .contact-item {
+    display: flex; align-items: flex-start; gap: 18px;
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+    padding: 20px 22px; border-radius: 4px;
+    transition: border-color 0.3s;
+  }
+  .contact-item:hover { border-color: rgba(201,168,76,0.4); }
+  .contact-icon { font-size: 1.6rem; flex-shrink: 0; }
+  .contact-item-label { font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
+  .contact-item-val { font-size: 0.95rem; color: var(--white); font-weight: 500; }
+  .contact-item-val a { color: inherit; text-decoration: none; transition: color 0.3s; }
+  .contact-item-val a:hover { color: var(--gold); }
+
+  .contact-form { display: flex; flex-direction: column; gap: 16px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-group label { font-size: 0.75rem; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.5); }
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--white); padding: 13px 16px;
+    font-family: 'Raleway', sans-serif; font-size: 0.9rem;
+    border-radius: 3px; outline: none;
+    transition: border-color 0.3s;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus { border-color: var(--gold); }
+  .form-group textarea { resize: vertical; min-height: 110px; }
+  .form-group select option { background: var(--black); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--black);
+    border-top: 1px solid rgba(201,168,76,0.15);
+    padding: 40px 6%; text-align: center;
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem; font-weight: 900; color: var(--gold);
+    letter-spacing: 3px; margin-bottom: 12px;
+  }
+  .footer-logo span { color: var(--sky); }
+  .footer-desc { color: rgba(255,255,255,0.35); font-size: 0.85rem; margin-bottom: 24px; }
+  .footer-links { display: flex; gap: 28px; justify-content: center; flex-wrap: wrap; margin-bottom: 28px; }
+  .footer-links a { color: rgba(255,255,255,0.45); font-size: 0.8rem; text-decoration: none; letter-spacing: 1px; text-transform: uppercase; transition: color 0.3s; }
+  .footer-links a:hover { color: var(--gold); }
+  .footer-copy { color: rgba(255,255,255,0.2); font-size: 0.78rem; }
+
+  /* ── WHATSAPP FLOAT ── */
+  .wa-float {
+    position: fixed; bottom: 28px; right: 28px; z-index: 200;
+    background: #25D366; color: white;
+    width: 56px; height: 56px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem; text-decoration: none; box-shadow: 0 4px 18px rgba(37,211,102,0.35);
+    transition: transform 0.3s, box-shadow 0.3s;
+    animation: pulse-wa 2.5s ease-in-out infinite;
+  }
+  .wa-float:hover { transform: scale(1.1); box-shadow: 0 6px 24px rgba(37,211,102,0.5); }
+  @keyframes pulse-wa {
+    0%,100% { box-shadow: 0 4px 18px rgba(37,211,102,0.35); }
+    50% { box-shadow: 0 4px 30px rgba(37,211,102,0.6); }
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; } to { opacity: 1; }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media(max-width: 900px) {
+    #about { grid-template-columns: 1fr; }
+    .about-visual { height: 300px; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .hero-deco { display: none; }
+    nav ul { display: none; }
+  }
+  @media(max-width: 600px) {
+    section { padding: 70px 5%; }
+    .stats-row { gap: 18px; }
+    .price-grid { grid-template-columns: repeat(2,1fr); }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#home" class="logo">Khissman <span>Art</span></a>
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact" class="nav-cta">Contact Us</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-tag">✦ Creative Design Studio</div>
+    <h1 class="hero-title">
+      Where <em>Art</em><br/>Meets Vision
+    </h1>
+    <p class="hero-sub">
+      Premium frame making, portrait artwork, logo & banner design, and web solutions.
+      Crafted with passion — built to impress. Welcome to Khissman Art.
+    </p>
+    <div class="hero-btns">
+      <a href="#services" class="btn-gold">Explore Services</a>
+      <a href="#contact" class="btn-outline">Get a Quote</a>
+    </div>
+  </div>
+
+  <!-- decorative panel -->
+  <div class="hero-deco">
+    <div class="hero-deco-inner">
+      <div class="art-icon">🖼️</div>
+      <div class="hero-deco-text">KHISSMAN ART</div>
+    </div>
+  </div>
+  <div class="float-frame ff1"></div>
+  <div class="float-frame ff2"></div>
+  <div class="float-frame ff3"></div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <span class="sec-label">What We Offer</span>
+  <h2 class="sec-title">Our <span>Services</span></h2>
+  <div class="divider"></div>
+  <p class="sec-desc">From hand-crafted portrait drawings to premium frames and graphic design — we deliver artistry at every level.</p>
+
+  <div class="services-grid" style="margin-top:40px;">
+
+    <div class="service-card">
+      <div class="service-icon">🖼️</div>
+      <div class="service-name">Frame Making</div>
+      <div class="service-desc">High-quality framed prints in multiple sizes, with or without glass. Perfect for portraits, certificates, and wall art.</div>
+      <div class="service-sample">
+        <div class="sample-icon">🖼️</div>
+        <span>Sample Frame Work</span>
+      </div>
+      <div class="price-tag">From ₦6,000</div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">🎨</div>
+      <div class="service-name">Portrait Drawing</div>
+      <div class="service-desc">Stunning hand-drawn portraits in pencil, charcoal, and color. Lifelike, detailed, and made with love for each subject.</div>
+      <div class="service-sample">
+        <div class="sample-icon">🎨</div>
+        <span>Sample Portrait Art</span>
+      </div>
+      <div class="price-tag">From ₦15,000</div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">✏️</div>
+      <div class="service-name">Logo Design</div>
+      <div class="service-desc">Professional, unique logos crafted to represent your brand identity. Clean, modern, and memorable designs delivered fast.</div>
+      <div class="service-sample">
+        <div class="sample-icon">✏️</div>
+        <span>Sample Logo Design</span>
+      </div>
+      <div class="price-tag">₦5,000</div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">🖥️</div>
+      <div class="service-name">Web Design</div>
+      <div class="service-desc">Beautiful, responsive websites for businesses, artists, and brands. We build sites that look great and work even better.</div>
+      <div class="service-sample">
+        <div class="sample-icon">🖥️</div>
+        <span>Sample Web Design</span>
+      </div>
+      <div class="price-tag">Get a Quote</div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">🏷️</div>
+      <div class="service-name">Banner Design</div>
+      <div class="service-desc">Eye-catching banners for events, promotions, social media, and print. Designed to communicate your message instantly.</div>
+      <div class="service-sample">
+        <div class="sample-icon">🏷️</div>
+        <span>Sample Banner Design</span>
+      </div>
+      <div class="price-tag">₦5,000</div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">💳</div>
+      <div class="service-name">Business Cards</div>
+      <div class="service-desc">Professionally designed and printed business cards that leave a lasting impression. Design + printing available.</div>
+      <div class="service-sample">
+        <div class="sample-icon">💳</div>
+        <span>Sample Business Card</span>
+      </div>
+      <div class="price-tag">Design ₦5,000 | Print from ₦12,000</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <span class="sec-label">Transparent Pricing</span>
+  <h2 class="sec-title">Our <span>Price List</span></h2>
+  <div class="divider"></div>
+
+  <div class="pricing-tabs">
+    <button class="tab-btn active" onclick="showTab('framed')">Framed Prints</button>
+    <button class="tab-btn" onclick="showTab('frameless')">Frameless Prints</button>
+    <button class="tab-btn" onclick="showTab('other')">Other Services</button>
+  </div>
+
+  <!-- FRAMED -->
+  <div class="pricing-panel active" id="tab-framed">
+    <div class="price-grid">
+      <div class="price-card">
+        <div class="price-size">8 × 12</div>
+        <div class="price-label">Framed Print</div>
+        <div class="price-amount"><sup>₦</sup>6,000</div>
+        <div class="price-note">Small — ideal for desktops</div>
+      </div>
+      <div class="price-card">
+        <div class="price-size">12 × 16</div>
+        <div class="price-label">Framed Print</div>
+        <div class="price-amount"><sup>₦</sup>8,000</div>
+        <div class="price-note">Medium — great for shelves</div>
+      </div>
+      <div class="price-card featured">
+        <div class="badge">Popular</div>
+        <div class="price-size">16 × 20</div>
+        <div class="price-label">Framed Print</div>
+        <div class="price-amount"><sup>₦</sup>12,000</div>
+        <div class="price-note">Large — stunning wall display</div>
+      </div>
+      <div class="price-card">
+        <div class="price-size">20 × 24</div>
+        <div class="price-label">Framed Print</div>
+        <div class="price-amount"><sup>₦</sup>18,000</div>
+        <div class="price-note">XL — premium centerpiece</div>
+      </div>
+      <div class="price-card">
+        <div class="price-size">24 × 36</div>
+        <div class="price-label">Framed Print</div>
+        <div class="price-amount"><sup>₦</sup>26,000</div>
+        <div class="price-note">XXL — statement piece</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FRAMELESS -->
+  <div class="pricing-panel" id="tab-frameless">
+    <div class="price-grid">
+      <div class="price-card">
+        <div class="price-size">12 × 16</div>
+        <div class="price-label">Frameless Print</div>
+        <div class="price-amount"><sup>₦</sup>10,000</div>
+        <div class="price-note">Clean, modern look</div>
+      </div>
+      <div class="price-card featured">
+        <div class="badge">Popular</div>
+        <div class="price-size">16 × 20</div>
+        <div class="price-label">Frameless Print</div>
+        <div class="price-amount"><sup>₦</sup>18,000</div>
+        <div class="price-note">Bold wall statement</div>
+      </div>
+      <div class="price-card">
+        <div class="price-size">20 × 24</div>
+        <div class="price-label">Frameless Print</div>
+        <div class="price-amount"><sup>₦</sup>22,000</div>
+        <div class="price-note">Gallery-style display</div>
+      </div>
+      <div class="price-card">
+        <div class="price-size">24 × 36</div>
+        <div class="price-label">Frameless Print</div>
+        <div class="price-amount"><sup>₦</sup>30,000</div>
+        <div class="price-note">Oversized elegance</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OTHER -->
+  <div class="pricing-panel" id="tab-other">
+    <div class="other-pricing">
+      <div class="op-card">
+        <div class="op-icon">🎨</div>
+        <div class="op-name">Portrait Drawing</div>
+        <div class="op-price">From ₦15,000</div>
+        <div class="op-note">Price varies by size & complexity</div>
+      </div>
+      <div class="op-card">
+        <div class="op-icon">✏️</div>
+        <div class="op-name">Logo Design</div>
+        <div class="op-price">₦5,000</div>
+        <div class="op-note">Professional & unique</div>
+      </div>
+      <div class="op-card">
+        <div class="op-icon">🏷️</div>
+        <div class="op-name">Banner Design</div>
+        <div class="op-price">₦5,000</div>
+        <div class="op-note">Print or digital banners</div>
+      </div>
+      <div class="op-card">
+        <div class="op-icon">💳</div>
+        <div class="op-name">Business Card Design</div>
+        <div class="op-price">₦5,000</div>
+        <div class="op-note">Design only</div>
+      </div>
+      <div class="op-card">
+        <div class="op-icon">🖨️</div>
+        <div class="op-name">Card Printing — 100 pcs</div>
+        <div class="op-price">₦12,000</div>
+        <div class="op-note">Premium quality print</div>
+      </div>
+      <div class="op-card">
+        <div class="op-icon">🖨️</div>
+        <div class="op-name">Card Printing — 200 pcs</div>
+        <div class="op-price">₦16,000</div>
+        <div class="op-note">Best value for bulk</div>
+      </div>
+      <div class="op-card">
+        <div class="op-icon">🖥️</div>
+        <div class="op-name">Web Design</div>
+        <div class="op-price">Get a Quote</div>
+        <div class="op-note">Custom-built for your brand</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <span class="sec-label">Our Portfolio</span>
+  <h2 class="sec-title">Work <span>Showcase</span></h2>
+  <div class="divider"></div>
+  <p class="sec-desc">Every piece we create is a unique expression of skill and passion. Here's a glimpse of our creative world.</p>
+
+  <div class="gallery-grid" style="margin-top:40px;">
+    <div class="gallery-item"><div class="gallery-thumb">🎨</div><div class="gallery-item-label">Portrait Art</div><div class="gallery-overlay"><span>View Work</span></div></div>
+    <div class="gallery-item"><div class="gallery-thumb">🖼️</div><div class="gallery-item-label">Framed Piece</div><div class="gallery-overlay"><span>View Work</span></div></div>
+    <div class="gallery-item"><div class="gallery-thumb">✏️</div><div class="gallery-item-label">Logo Design</div><div class="gallery-overlay"><span>View Work</span></div></div>
+    <div class="gallery-item"><div class="gallery-thumb">🖌️</div><div class="gallery-item-label">Pencil Drawing</div><div class="gallery-overlay"><span>View Work</span></div></div>
+    <div class="gallery-item"><div class="gallery-thumb">🏷️</div><div class="gallery-item-label">Banner Design</div><div class="gallery-overlay"><span>View Work</span></div></div>
+    <div class="gallery-item"><div class="gallery-thumb">💳</div><div class="gallery-item-label">Business Card</div><div class="gallery-overlay"><span>View Work</span></div></div>
+    <div class="gallery-item"><div class="gallery-thumb">🖼️</div><div class="gallery-item-label">Frameless Art</div><div class="gallery-overlay"><span>View Work</span></div></div>
+    <div class="gallery-item"><div class="gallery-thumb">🖥️</div><div class="gallery-item-label">Web Design</div><div class="gallery-overlay"><span>View Work</span></div></div>
+  </div>
+
+  <div style="text-align:center; margin-top:40px;">
+    <p style="color:rgba(255,255,255,0.35); font-size:0.85rem; margin-bottom:18px;">📸 Add your real work photos to replace the placeholders above</p>
+    <a href="https://wa.me/2348067455875" target="_blank" class="btn-gold">Order Custom Work</a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-visual">
+    <div class="about-icon">🎨</div>
+    <div class="about-quote">"Art is not what you see, but what you make others see."</div>
+    <div class="about-corner"></div>
+  </div>
+  <div class="about-text">
+    <span class="sec-label">About Us</span>
+    <h2 class="sec-title">Passion <span>Crafted</span> Into Every Piece</h2>
+    <div class="divider"></div>
+    <p class="sec-desc" style="max-width:100%">
+      Khissman Art is a creative design studio dedicated to transforming ideas into visual masterpieces.
+      Whether it's a hand-drawn portrait of a loved one, a perfectly framed print, a brand logo,
+      or a stunning website — we pour skill and care into every project.
+    </p>
+    <p class="sec-desc" style="max-width:100%; margin-top:16px;">
+      Based in Nigeria, we serve clients across the country with fast turnaround,
+      fair prices, and unmatched quality. Your vision is our mission.
+    </p>
+    <div class="stats-row">
+      <div class="stat">
+        <div class="stat-num">200+</div>
+        <div class="stat-label">Projects Done</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Satisfaction</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">5★</div>
+        <div class="stat-label">Client Rating</div>
+      </div>
+    </div>
+    <div style="margin-top:32px;">
+      <a href="#contact" class="btn-gold">Work With Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <span class="sec-label">Get In Touch</span>
+  <h2 class="sec-title">Contact <span>Khissman Art</span></h2>
+  <div class="divider"></div>
+
+  <div class="contact-grid">
+    <div class="contact-info">
+      <div class="contact-item">
+        <div class="contact-icon">💬</div>
+        <div>
+          <div class="contact-item-label">WhatsApp / Call</div>
+          <div class="contact-item-val">
+            <a href="https://wa.me/2348067455875" target="_blank">08067455875</a>
+          </div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <div>
+          <div class="contact-item-label">Phone Call</div>
+          <div class="contact-item-val">
+            <a href="tel:08067455875">08067455875</a>
+          </div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">🎵</div>
+        <div>
+          <div class="contact-item-label">TikTok</div>
+          <div class="contact-item-val">
+            <a href="https://www.tiktok.com/@khissman01" target="_blank">@Khissman01</a>
+          </div>
+        </div>
+      </div>
+      <div class="contact-item" style="background:rgba(37,211,102,0.05); border-color:rgba(37,211,102,0.25);">
+        <div class="contact-icon">📲</div>
+        <div>
+          <div class="contact-item-label" style="color:#25D366;">Quick Order via WhatsApp</div>
+          <div class="contact-item-val">
+            <a href="https://wa.me/2348067455875?text=Hi%20Khissman%20Art!%20I%20would%20like%20to%20place%20an%20order." target="_blank" style="color:#25D366;">Tap to Chat Now →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <h3 style="font-family:'Playfair Display',serif; font-size:1.3rem; margin-bottom:6px;">Send an Enquiry</h3>
+      <p style="color:rgba(255,255,255,0.4); font-size:0.85rem; margin-bottom:18px;">Fill in the form and we'll get back to you on WhatsApp.</p>
+
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" placeholder="e.g. Amaka Johnson"/>
+      </div>
+      <div class="form-group">
+        <label>Phone / WhatsApp</label>
+        <input type="tel" placeholder="e.g. 08012345678"/>
+      </div>
+      <div class="form-group">
+        <label>Service Needed</label>
+        <select>
+          <option value="">-- Select a Service --</option>
+          <option>Portrait Drawing</option>
+          <option>Frame Making</option>
+          <option>Logo Design</option>
+          <option>Banner Design</option>
+          <option>Business Card Design</option>
+          <option>Business Card Printing</option>
+          <option>Web Design</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Message / Details</label>
+        <textarea placeholder="Tell us about your project, size, deadline, etc."></textarea>
+      </div>
+      <a href="https://wa.me/2348067455875?text=Hi%20Khissman%20Art!%20I%20would%20like%20to%20enquire%20about%20your%20services." target="_blank" class="btn-gold" style="text-align:center;">Send via WhatsApp 💬</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Khissman <span>Art</span></div>
+  <p class="footer-desc">Creative Design Studio — Frame Making · Portrait Art · Graphic Design · Web Design</p>
+  <div class="footer-links">
+    <a href="#home">Home</a>
+    <a href="#services">Services</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <p class="footer-copy">© 2025 Khissman Art. All rights reserved. | TikTok: @Khissman01 | 08067455875</p>
+</footer>
+
+<!-- WhatsApp Float -->
+<a href="https://wa.me/2348067455875?text=Hi%20Khissman%20Art!%20I%20want%20to%20place%20an%20order." target="_blank" class="wa-float" title="Chat on WhatsApp">💬</a>
+
+<script>
+function showTab(name) {
+  document.querySelectorAll('.pricing-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.service-card, .price-card, .op-card, .gallery-item, .contact-item').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(24px)';
+  el.style.transition = 'opacity 0.55s ease, transform 0.55s ease, border-color 0.3s';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
